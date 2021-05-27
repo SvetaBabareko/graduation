@@ -25,6 +25,7 @@
     <!-- Logging -->
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
+    <jackson-json.version>2.12.2</jackson-json.version>
 
     <assertj.version>3.19.0</assertj.version>
   </properties>
@@ -155,10 +156,27 @@
       <artifactId>junit-jupiter-params</artifactId>
       <version>5.7.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-hibernate5</artifactId>
+      <version>${jackson-json.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson-json.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>jakarta.validation</groupId>
       <artifactId>jakarta.validation-api</artifactId>
       <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.0</version>
     </dependency>
 
 

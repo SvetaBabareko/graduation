@@ -1,7 +1,6 @@
 package org.babareko.graduation.repository;
 
 import org.babareko.graduation.model.Dish;
-import org.babareko.graduation.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
