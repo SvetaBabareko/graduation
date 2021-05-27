@@ -1,5 +1,8 @@
 package org.babareko.graduation.to;
 
+import java.util.List;
+import java.util.stream.Collector;
+
 public class RestaurantTO {
     private final Integer id;
     private final String name;
@@ -10,4 +13,5 @@ public class RestaurantTO {
         this.name = name;
         this.description = description;
     }
+
 }

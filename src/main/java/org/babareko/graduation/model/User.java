@@ -1,11 +1,10 @@
 package org.babareko.graduation.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.springframework.util.CollectionUtils;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.util.*;
 
 @Entity
@@ -29,16 +28,16 @@ public class User extends AbstractEntity {
     @NotNull
     private Date registered = new Date();
 
-    @Enumerated(EnumType.STRING)
+   /* @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     @OrderBy("dateVote DESC")
-    private List<Vote> votes;
+    private List<Vote> votes;*/
 
     public String getName() {
         return name;
@@ -72,28 +71,27 @@ public class User extends AbstractEntity {
         this.registered = registered;
     }
 
-    public Set<Role> getRoles() {
+   /* public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
-    }
+    }*/
 
     public User() {
     }
 
     public User(User u) {
-        this(u.getId(), u.getName(), u.getPassword(), u.isEnabled(), u.getRegistered(), u.getRoles());
+        this(u.getId(), u.getName(), u.getPassword(), u.isEnabled(), u.getRegistered());
     }
 
-    public User(@NotNull Integer id, @NotBlank @Size(min = 1, max = 100) String name, @NotBlank @Size(min = 5, max = 100) String password, boolean enabled, @NotNull Date registered, Set<Role> roles) {
+    public User(@NotNull Integer id, @NotBlank @Size(min = 1, max = 100) String name, @NotBlank @Size(min = 5, max = 100) String password, boolean enabled, @NotNull Date registered) {
         super(id);
         this.name = name;
         this.password = password;
         this.enabled = enabled;
         this.registered = registered;
-        setRoles(roles);
     }
 
     @Override
@@ -104,7 +102,6 @@ public class User extends AbstractEntity {
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", registered=" + registered +
-                ", roles=" + roles +
                 '}';
     }
 }

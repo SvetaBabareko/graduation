@@ -1,14 +1,22 @@
 package org.babareko.graduation.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
+
+@NamedQueries({
+        @NamedQuery(name = Restaurant.ALL, query = "select r from Restaurant r" ),
+
+})
 
 @Entity
 @Table(name="restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = "name", name = "restaurants_unique_name_idx")})
 public class Restaurant extends AbstractEntity{
+
+    public static final String ALL = "Meal.all";
 
     @NotBlank
     @Column(name = "name", nullable = false)
@@ -20,7 +28,7 @@ public class Restaurant extends AbstractEntity{
     @Size(min = 1, max = 250)
     private String description;
 
-    public List<Dish> getMenu() {
+   /* public List<Dish> getMenu() {
         return menu;
     }
 
@@ -28,8 +36,8 @@ public class Restaurant extends AbstractEntity{
         this.menu = menu;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant_id")
-    private List<Dish> menu;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    private List<Dish> menu;*/
 
     public String getName() {
         return name;

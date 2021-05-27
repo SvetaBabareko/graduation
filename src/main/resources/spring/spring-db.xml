@@ -10,7 +10,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
-
+    <context:component-scan base-package="org.babareko.**.repository"/>
 
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
         <jdbc:script location="${jdbc.initLocation}"/>
@@ -22,21 +22,22 @@
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
-        <property name="username" value="${database.user name}"/>
+        <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:packagesToScan="ru.javawebinar.**.model">
-        <!--p:persistenceUnitName="persistenceUnit">-->
+          p:packagesToScan="org.babareko.**.model">
 
         <property name="jpaPropertyMap">
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
-                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
-            </map>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
+                       value="${hibernate.use_sql_comments}"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
+
+             </map>
         </property>
 
         <property name="jpaVendorAdapter">
@@ -47,5 +48,8 @@
     </bean>
 
     <tx:annotation-driven/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory"/>
 
 </beans>
