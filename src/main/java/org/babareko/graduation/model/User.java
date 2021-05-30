@@ -1,5 +1,7 @@
 package org.babareko.graduation.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotBlank;
@@ -103,5 +105,9 @@ public class User extends AbstractEntity {
                 ", enabled=" + enabled +
                 ", registered=" + registered +
                 '}';
+    }
+
+    public Collection<? extends GrantedAuthority> getRoles() {
+        return null;
     }
 }
