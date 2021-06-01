@@ -2,11 +2,11 @@ package org.babareko.graduation.to;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.io.Serial;
+
 import java.io.Serializable;
 
 public class UserTO implements Serializable {
-    @Serial
+
     private static final long serialVersionUID = 1L;
 
     @NotBlank

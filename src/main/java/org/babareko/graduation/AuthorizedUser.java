@@ -4,10 +4,10 @@ import org.babareko.graduation.model.User;
 import org.babareko.graduation.to.UserTO;
 import org.babareko.graduation.util.UserUtil;
 
-import java.io.Serial;
+
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
-    @Serial
+
     private static final long serialVersionUID = 1L;
 
     private UserTO userTo;
