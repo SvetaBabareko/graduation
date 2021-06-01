@@ -12,7 +12,7 @@ import static org.babareko.graduation.web.SecurityUtil.authUserId;
 public class ProfileRestController extends AbstractUserController{
     static final String REST_URL = "/rest/profile";
 
-    @GetMapping
+   @GetMapping
     public User get() {
         return super.get(authUserId());
     }
@@ -23,9 +23,9 @@ public class ProfileRestController extends AbstractUserController{
         super.delete(authUserId());
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  /* @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody User user) {
         super.update(user, authUserId());
-    }
+    }*/
 }

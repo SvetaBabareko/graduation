@@ -9,16 +9,18 @@ import java.util.List;
 @Service
 public class RestaurantService {
 
-    private final RestaurantRepository repository;
+    //private final RestaurantRepository repository;
+    private  RestaurantRepository repository;
 
     public RestaurantService(RestaurantRepository repository) {
         this.repository = repository;
     }
 
     public List<Restaurant> getAll(int userId) {
-        return null;
+        return repository.getAll();
         //repository.getAll(userId);
     }
 
-
+    public RestaurantService() {
+    }
 }

@@ -1,6 +1,7 @@
 package org.babareko.graduation.web.user;
 
 import org.babareko.graduation.model.User;
+import org.babareko.graduation.repository.UserRepository;
 import org.babareko.graduation.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,10 @@ public class AbstractUserController {
     @Autowired
     private UserService service;
 
-    public List<User> getAll() {
+    @Autowired
+    protected UserRepository userRepository;
+
+  public List<User> getAll() {
         log.info("getAll");
         return service.getAll();
     }
@@ -24,18 +28,18 @@ public class AbstractUserController {
         return service.get(id);
     }
 
-    public User create(User user) {
-        log.info("create {}", user);
+   // public User create(User user) {
+    //    log.info("create {}", user);
        // checkNew(user);
-        return service.create(user);
-    }
+   //     return service.create(user);
+  //  }
 
     public void delete(int id) {
         log.info("delete {}", id);
         service.delete(id);
     }
 
-    public void update(User user, int id) {
+   /* public void update(User user, int id) {
         log.info("update {} with id={}", user, id);
         //assureIdConsistent(user, id);
         service.update(user);
@@ -45,5 +49,5 @@ public class AbstractUserController {
     public User getWithVotes(int id) {
         log.info("getWithVotes {}", id);
         return service.getWithVotes(id);
-    }
+    }*/
 }

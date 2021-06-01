@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -19,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("DELETE FROM User u WHERE u.id=:id")
     int deleteById(@Param("id") int id);
 
-    //    https://stackoverflow.com/a/46013654/548473
+   //    https://stackoverflow.com/a/46013654/548473
     @EntityGraph(attributePaths = {"votes"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT u FROM User u WHERE u.id=?1")
     User getWithVotes(int id);
@@ -29,4 +28,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> getAll();
 
     User getByName(String name);
+
+
 }
